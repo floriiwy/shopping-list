@@ -2,19 +2,28 @@
 const messages = document.querySelector('.items');
 const sendInput = document.querySelector('#input-wrapper');
 
-sendInput.addEventListener('keydown', function() {
+messages.addEventListener('keydown', function(event) {
     const messageText = sendInput.value;
 
-    const newMessage = document.createElement('p');
+    const itemsList = messages.createElement(ul);
+
+    const newMessage = itemsList.createElement(li);
     newMessage.classList.add('message');
     newMessage.textContent = messageText;
 
-    if (messageText != '') {
+    if (messageText != '' && event.key == 'Enter') {
         messages.append(newMessage);
     }
 
     sendInput.value = '';
 });
+
+const planPoint = document.querySelectorAll("li");
+for (let item of planPoint) {
+    item.addEventListener('click', function() {
+        item.classList.add('done');
+    });
+}
 /* Пустые элементы не должны добавляться */
 
 /* Если кликнуть на элемент списка, он зачеркивается */

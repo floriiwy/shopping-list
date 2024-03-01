@@ -1,29 +1,31 @@
 /* Новые элементы должны добавляться в список по нажатию на Enter */
 const messages = document.querySelector('.items');
-const sendInput = document.querySelector('#input-wrapper');
+const sendInput = document.querySelector('#input');
 
-messages.addEventListener('keydown', function(event) {
-    const messageText = sendInput.value;
+sendInput.addEventListener('keydown', function(event) {
 
-    const itemsList = messages.createElement(ul);
+    if (event.key == 'Enter') {
+        const messageText = sendInput.value;
 
-    const newMessage = itemsList.createElement(li);
-    newMessage.classList.add('message');
-    newMessage.textContent = messageText;
+        const itemsList = messages.createElement(ul);
 
-    if (messageText != '' && event.key == 'Enter') {
-        messages.append(newMessage);
+        const newMessage = itemsList.createElement(li);
+        newMessage.classList.add('message');
+        newMessage.textContent = messageText;
+        const planPoint = document.querySelectorAll("li");
+        for (let item of planPoint) {
+            item.addEventListener('click', function() {
+                item.classList.add('done');
+            });
+        }
+        if (messageText != '') {
+            messages.append(newMessage);
+        }
+
+        sendInput.value = '';
     }
-
-    sendInput.value = '';
 });
 
-const planPoint = document.querySelectorAll("li");
-for (let item of planPoint) {
-    item.addEventListener('click', function() {
-        item.classList.add('done');
-    });
-}
 /* Пустые элементы не должны добавляться */
 
 /* Если кликнуть на элемент списка, он зачеркивается */

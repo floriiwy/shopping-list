@@ -7,17 +7,14 @@ sendInput.addEventListener('keydown', function(event) {
     if (event.key == 'Enter') {
         const messageText = sendInput.value;
 
-        const itemsList = messages.createElement(ul);
+        const itemsList = messages.createElement('ul');
 
-        const newMessage = itemsList.createElement(li);
+        const newMessage = itemsList.createElement('li');
         newMessage.classList.add('message');
         newMessage.textContent = messageText;
-        const planPoint = document.querySelectorAll("li");
-        for (let item of planPoint) {
-            item.addEventListener('click', function() {
-                item.classList.add('done');
-            });
-        }
+        newMessage.addEventListener('click', function() {
+            newMessage.classList.toggle('done');
+        });
         if (messageText != '') {
             messages.append(newMessage);
         }

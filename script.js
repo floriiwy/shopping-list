@@ -7,9 +7,11 @@ sendInput.addEventListener('keydown', function(event) {
     if (event.key == 'Enter') {
         const messageText = sendInput.value;
 
-        const itemsList = messages.createElement('ul');
+        const itemsList = document.createElement('ul');
+        messages.append(itemsList);
 
-        const newMessage = itemsList.createElement('li');
+        const newMessage = document.createElement('li');
+        itemsList.append(newMessage);
         newMessage.classList.add('message');
         newMessage.textContent = messageText;
         newMessage.addEventListener('click', function() {
